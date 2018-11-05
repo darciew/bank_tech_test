@@ -11,7 +11,7 @@ class BankAccount
     raise "Amount must be more than #{START_BALANCE}" if amount.negative?
 
     @balance += amount
-    trans_details = { credit: 0, debit: amount, balance: @balance}
+    trans_details = { credit: 0, debit: amount, balance: @balance }
     add_to_transactions(trans_details)
   end
 

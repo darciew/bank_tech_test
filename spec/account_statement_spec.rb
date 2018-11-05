@@ -2,7 +2,7 @@ require 'account_statement'
 
 describe AccountStatement do
   let(:accountstatement) { described_class.new }
-  let(:deposit_trans) { { credit: 0, debit: 150, balance: 150} }
+  let(:deposit_trans) { { credit: 0, debit: 150, balance: 150 } }
 
   context('A new account statement') do
     describe('#initialize') do

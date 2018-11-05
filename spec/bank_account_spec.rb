@@ -30,7 +30,7 @@ describe BankAccount do
 
       it('adds deposit values to the account statement') do
         bankaccount.deposit(150)
-        transactions = [{ credit: 0, debit: 150, balance: 150}]
+        transactions = [{ credit: 0, debit: 150, balance: 150 }]
         expect(bankaccount.statement.transactions).to eq transactions
       end
     end
