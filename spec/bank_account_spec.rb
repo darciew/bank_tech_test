@@ -33,10 +33,11 @@ describe BankAccount do
         expect(bankaccount.balance).to eq 800
       end
 
-      it('does not reduce balance if the amount entered is greater than the balance') do
+      it('throws an error if withdraw amount is greater than the balance') do
         bankaccount.deposit(1000)
-        bankaccount.withdraw(1001)
-        expect(bankaccount.balance).not_to eq -1
+        err_msg = 'Error: insufficient funds'
+        expect { bankaccount.withdraw(1001) }.to raise_error err_msg
+        expect(bankaccount.balance).not_to eq(-1)
       end
     end
   end
