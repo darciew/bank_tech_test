@@ -4,4 +4,8 @@ class AccountStatement
   def initialize
     @transactions = []
   end
+
+  def transaction_log(details)
+    @transactions << details
+  end
 end

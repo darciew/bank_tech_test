@@ -11,12 +11,19 @@ class BankAccount
     raise "Amount must be more than #{START_BALANCE}" if amount.negative?
 
     @balance += amount
-    @statement.transactions << { credit: 0, debit: amount, balance: @balance}
+    trans_details = { credit: 0, debit: amount, balance: @balance}
+    add_to_transactions(trans_details)
   end
 
   def withdraw(amount)
     raise 'Error: insufficient funds' if amount > @balance
 
     @balance -= amount
+  end
+
+  private
+
+  def add_to_transactions(details)
+    @statement.transaction_log(details)
   end
 end
