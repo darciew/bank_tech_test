@@ -19,6 +19,8 @@ class BankAccount
     raise 'Error: insufficient funds' if amount > @balance
 
     @balance -= amount
+    trans_details = { credit: amount, debit: 0, balance: @balance }
+    add_to_transactions(trans_details)
   end
 
   private

@@ -18,6 +18,8 @@ describe BankAccount do
 
   context('Depositing money') do
     describe('#deposit') do
+      let(:deposit_trans) { { credit: 0, debit: 150, balance: 150 } }
+
       it('adds an amount to the existing balance') do
         bankaccount.deposit(150)
         expect(bankaccount.balance).to eq 150
@@ -30,25 +32,32 @@ describe BankAccount do
 
       it('adds deposit values to the account statement') do
         bankaccount.deposit(150)
-        transactions = [{ credit: 0, debit: 150, balance: 150 }]
-        expect(bankaccount.statement.transactions).to eq transactions
+        expect(bankaccount.statement.transactions).to include { deposit_trans }
       end
     end
   end
 
   context('Withdrawing money') do
     describe('#withdraw') do
-      it('reduces the balance by the amount entered') do
+      let(:withdraw_trans) { { credit: 200, debit: 0, balance: 800 } }
+      before(:each) do
         bankaccount.deposit(1000)
+      end
+
+      it('reduces the balance by the amount entered') do
         bankaccount.withdraw(200)
         expect(bankaccount.balance).to eq 800
       end
 
       it('throws an error if withdraw amount is greater than the balance') do
-        bankaccount.deposit(1000)
         err_msg = 'Error: insufficient funds'
         expect { bankaccount.withdraw(1001) }.to raise_error err_msg
         expect(bankaccount.balance).not_to eq(-1)
+      end
+
+      it('adds withdraw values to the account statement') do
+        bankaccount.withdraw(200)
+        expect(bankaccount.statement.transactions).to include { withdraw_trans }
       end
     end
   end
