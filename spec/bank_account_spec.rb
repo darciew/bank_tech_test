@@ -24,4 +24,14 @@ describe BankAccount do
       end
     end
   end
+
+  context('Withdrawing money') do
+    describe('#withdraw') do
+      it('reduces the balance by the amount entered') do
+        bankaccount.deposit(1000)
+        bankaccount.withdraw(200)
+        expect(bankaccount.balance).to eq 800
+      end
+    end
+  end
 end
