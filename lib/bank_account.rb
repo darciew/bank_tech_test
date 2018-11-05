@@ -1,7 +1,8 @@
 class BankAccount
   attr_reader :balance
+  START_BALANCE = 0
 
   def initialize
-    @balance = 0
+    @balance = START_BALANCE
   end
 end
