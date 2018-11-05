@@ -11,6 +11,7 @@ class BankAccount
     raise "Amount must be more than #{START_BALANCE}" if amount.negative?
 
     @balance += amount
+    @statement.transactions << { credit: 0, debit: amount, balance: @balance}
   end
 
   def withdraw(amount)
