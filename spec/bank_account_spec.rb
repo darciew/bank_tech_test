@@ -32,6 +32,12 @@ describe BankAccount do
         bankaccount.withdraw(200)
         expect(bankaccount.balance).to eq 800
       end
+
+      it('does not reduce balance if the amount entered is greater than the balance') do
+        bankaccount.deposit(1000)
+        bankaccount.withdraw(1001)
+        expect(bankaccount.balance).not_to eq -1
+      end
     end
   end
 end
