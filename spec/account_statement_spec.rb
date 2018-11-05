@@ -1,9 +1,11 @@
 require 'account_statement'
+require 'date'
 
 describe AccountStatement do
   let(:accountstatement) { described_class.new }
-  let(:deposit_trans) { { credit: 0, debit: 150, balance: 150 } }
-  let(:withdraw_trans) { { credit: 150, debit: 0, balance: 0 } }
+  let(:date) { Date.parse('15/11/2018') }
+  let(:deposit_trans) { { date: date, credit: 0, debit: 150, balance: 150 } }
+  let(:withdraw_trans) { { date: date, credit: 150, debit: 0, balance: 0 } }
 
   context('A new account statement') do
     describe('#initialize') do

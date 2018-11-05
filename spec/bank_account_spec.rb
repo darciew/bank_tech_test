@@ -1,5 +1,6 @@
 require 'bank_account'
 require 'account_statement'
+require 'date'
 
 describe BankAccount do
   let(:bankaccount) { described_class.new }
@@ -18,7 +19,8 @@ describe BankAccount do
 
   context('Depositing money') do
     describe('#deposit') do
-      let(:deposit_trans) { { credit: 0, debit: 150, balance: 150 } }
+      let(:date) { Date.parse('15/11/2018') }
+      let(:deposit_trans) { { date: date, credit: 0, debit: 150, balance: 150 } }
 
       it('adds an amount to the existing balance') do
         bankaccount.deposit(150)
@@ -39,7 +41,9 @@ describe BankAccount do
 
   context('Withdrawing money') do
     describe('#withdraw') do
-      let(:withdraw_trans) { { credit: 200, debit: 0, balance: 800 } }
+      let(:date) { Date.parse('15/11/2018') }
+      let(:withdraw_trans) { { date: date, credit: 200, debit: 0, balance: 800 } }
+
       before(:each) do
         bankaccount.deposit(1000)
       end

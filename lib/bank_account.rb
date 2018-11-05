@@ -1,3 +1,5 @@
+require 'date'
+
 class BankAccount
   attr_reader :balance, :statement
   START_BALANCE = 0
@@ -7,19 +9,19 @@ class BankAccount
     @statement = statement
   end
 
-  def deposit(amount)
+  def deposit(amount, date = Date.today)
     raise "Amount must be more than #{START_BALANCE}" if amount.negative?
 
     @balance += amount
-    trans_details = { credit: 0, debit: amount, balance: @balance }
+    trans_details = { date: date.strftime("%d/%m/%Y"), credit: 0, debit: amount, balance: @balance }
     add_to_transactions(trans_details)
   end
 
-  def withdraw(amount)
+  def withdraw(amount, date = Date.today)
     raise 'Error: insufficient funds' if amount > @balance
 
     @balance -= amount
-    trans_details = { credit: amount, debit: 0, balance: @balance }
+    trans_details = { date: date.strftime("%d/%m/%Y"), credit: amount, debit: 0, balance: @balance }
     add_to_transactions(trans_details)
   end
 
@@ -28,4 +30,5 @@ class BankAccount
   def add_to_transactions(details)
     @statement.transaction_log(details)
   end
+
 end
