@@ -17,6 +17,11 @@ describe BankAccount do
         bankaccount.deposit(150)
         expect(bankaccount.balance).to eq 150
       end
+
+      it('throws an error if the amount is not a positive number') do
+        err_msg = "Amount must be more than #{BankAccount::START_BALANCE}"
+        expect { bankaccount.deposit(-15) }.to raise_error err_msg
+      end
     end
   end
 end

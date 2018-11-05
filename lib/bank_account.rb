@@ -7,6 +7,7 @@ class BankAccount
   end
 
   def deposit(amount)
+    raise "Amount must be more than #{START_BALANCE}" if amount.negative?
     @balance += amount
   end
 end
