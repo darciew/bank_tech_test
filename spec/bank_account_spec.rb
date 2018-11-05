@@ -10,4 +10,13 @@ describe BankAccount do
       end
     end
   end
+
+  context('Depositing money') do
+    describe('#deposit') do
+      it('adds an amount to the existing balance') do
+        bankaccount.deposit(150)
+        expect(bankaccount.balance).to eq 150
+      end
+    end
+  end
 end
