@@ -70,8 +70,9 @@ describe BankAccount do
         allow(Date).to receive(:today).and_return(date)
         bankaccount.deposit(1500)
         bankaccount.withdraw(200)
-        print_view = 'date || credit || debit || balance' + "\n" '15/11/2017 || 1500 || - || 1500' + "\n" + '15/11/2017 || - || 200 || 1300' + "\n"
-        expect { bankaccount.view_statement }.to output(print_view).to_stdout
+        expect { bankaccount.view_statement }.to output('date || credit || '\
+           "debit || balance\n15/11/2017 || 1500 || - || 1500\n15/11/2017"\
+           " || - || 200 || 1300\n").to_stdout
       end
     end
   end

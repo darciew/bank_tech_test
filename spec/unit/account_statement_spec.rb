@@ -36,8 +36,8 @@ describe AccountStatement do
       it('formats a statement') do
         allow(Date).to receive(:today).and_return(date)
         accountstatement.transaction_log(deposit_trans)
-        format_view = 'date || credit || debit || balance' + "\n" '2017-11-15 || 150 || - || 150' + "\n"
-        expect { accountstatement.format_statement }.to output(format_view).to_stdout
+        expect { accountstatement.format_statement }.to output('date || credit || '\
+           "debit || balance\n2017-11-15 || 150 || - || 150\n").to_stdout
       end
     end
   end

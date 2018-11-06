@@ -1,5 +1,6 @@
 require 'date'
 
+# BankAccount Class
 class BankAccount
   attr_reader :balance, :statement
   START_BALANCE = 0
