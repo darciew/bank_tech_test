@@ -68,7 +68,7 @@ describe BankAccount do
   context('Viewing bank statement') do
     describe('#view_statement') do
       it('prints out a bank statement') do
-        allow(Date).to receive(:today).and_return (date)
+        allow(Date).to receive(:today).and_return(date)
         bankaccount.deposit(1500)
         bankaccount.withdraw(200)
         print_view = 'date || credit || debit || balance' + "\n" '15/11/2017 || - || 1500 || 1500' + "\n" + '15/11/2017 || 200 || - || 1300' + "\n"

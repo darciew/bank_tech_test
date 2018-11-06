@@ -13,7 +13,12 @@ class BankAccount
     raise "Amount must be more than #{START_BALANCE}" if amount.negative?
 
     @balance += amount
-    trans_details = { date: date.strftime("%d/%m/%Y"), credit: "-", debit: amount, balance: @balance }
+    trans_details = {
+      date: date.strftime('%d/%m/%Y'),
+      credit: '-',
+      debit: amount,
+      balance: @balance
+    }
     add_to_transactions(trans_details)
   end
 
@@ -21,7 +26,12 @@ class BankAccount
     raise 'Error: insufficient funds' if amount > @balance
 
     @balance -= amount
-    trans_details = { date: date.strftime("%d/%m/%Y"), credit: amount, debit: "-", balance: @balance }
+    trans_details = {
+      date: date.strftime('%d/%m/%Y'),
+      credit: amount,
+      debit: '-',
+      balance: @balance
+    }
     add_to_transactions(trans_details)
   end
 
@@ -34,5 +44,4 @@ class BankAccount
   def add_to_transactions(details)
     @statement.transaction_log(details)
   end
-
 end

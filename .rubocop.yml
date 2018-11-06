@@ -1,0 +1,10 @@
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+
+Metrics/LineLength:
+  Exclude:
+    - 'spec/**/*'
