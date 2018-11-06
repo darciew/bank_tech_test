@@ -21,7 +21,7 @@ I can withdraw funds from my account
 
 As a User
 So that I can save some money
-I can depsit funds into my account
+I can deposit funds into my account
 
 As a User
 So that I can keep track of my spending
