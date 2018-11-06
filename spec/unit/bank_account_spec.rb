@@ -31,11 +31,6 @@ describe BankAccount do
         err_msg = "Amount must be more than #{BankAccount::START_BALANCE}"
         expect { bankaccount.deposit(-15) }.to raise_error err_msg
       end
-
-      it('adds deposit values to the account statement') do
-        bankaccount.deposit(150)
-        expect(bankaccount.statement.transactions).to include { deposit_trans }
-      end
     end
   end
 
