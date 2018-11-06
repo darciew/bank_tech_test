@@ -17,7 +17,6 @@ class BankAccount
     trans_details = {
       date: date,
       credit: amount,
-      debit: '-',
       balance: @balance
     }
     add_to_transactions(trans_details)
@@ -29,7 +28,6 @@ class BankAccount
     @balance -= amount
     trans_details = {
       date: date,
-      credit: '-',
       debit: amount,
       balance: @balance
     }

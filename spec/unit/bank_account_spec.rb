@@ -20,7 +20,7 @@ describe BankAccount do
 
   context('Depositing money') do
     describe('#deposit') do
-      let(:deposit_trans) { { date: date, credit: 150, debit: '-', balance: 150 } }
+      let(:deposit_trans) { { date: date, credit: 150, debit: ' ', balance: 150 } }
 
       it('adds an amount to the existing balance') do
         bankaccount.deposit(150)
@@ -41,7 +41,7 @@ describe BankAccount do
 
   context('Withdrawing money') do
     describe('#withdraw') do
-      let(:withdraw_trans) { { date: date, credit: '-', debit: 200, balance: 800 } }
+      let(:withdraw_trans) { { date: date, credit: ' ', debit: 200, balance: 800 } }
 
       before(:each) do
         bankaccount.deposit(1000)
@@ -71,8 +71,8 @@ describe BankAccount do
         bankaccount.deposit(1500)
         bankaccount.withdraw(200)
         expect { bankaccount.view_statement }.to output('date || credit || '\
-           "debit || balance\n15/11/2017 || - || 200 || 1300\n15/11/2017"\
-           " || 1500 || - || 1500\n").to_stdout
+           "debit || balance\n15/11/2017 ||  || 200 || 1300\n15/11/2017"\
+           " || 1500 ||  || 1500\n").to_stdout
       end
     end
   end
