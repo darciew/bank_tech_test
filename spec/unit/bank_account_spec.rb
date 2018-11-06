@@ -6,18 +6,6 @@ describe BankAccount do
   let(:bankaccount) { described_class.new }
   let(:date) { Date.parse('15/11/2017') }
 
-  context('A new bank account') do
-    describe('#initialize') do
-      it('starts with a balance of zero') do
-        expect(bankaccount.balance).to eq 0
-      end
-
-      it('contains an instance of AccountStatement') do
-        expect(bankaccount.statement).to be_an_instance_of(AccountStatement)
-      end
-    end
-  end
-
   context('Depositing money') do
     describe('#deposit') do
       let(:deposit_trans) { { date: date, credit: 150, debit: ' ', balance: 150 } }
@@ -50,11 +38,6 @@ describe BankAccount do
         err_msg = 'Error: insufficient funds'
         expect { bankaccount.withdraw(1001) }.to raise_error err_msg
         expect(bankaccount.balance).not_to eq(-1)
-      end
-
-      it('adds withdraw values to the account statement') do
-        bankaccount.withdraw(200)
-        expect(bankaccount.statement.transactions).to include { withdraw_trans }
       end
     end
   end

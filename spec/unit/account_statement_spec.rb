@@ -7,14 +7,6 @@ describe AccountStatement do
   let(:deposit_trans) { { date: date, credit: 150, debit: '-', balance: 150 } }
   let(:withdraw_trans) { { date: date, credit: '-', debit: 150, balance: 0 } }
 
-  context('A new account statement') do
-    describe('#initialize') do
-      it('starts with an empty transactions array') do
-        expect(accountstatement.transactions).to eq []
-      end
-    end
-  end
-
   context('Logging transactions') do
     describe('#transaction_log') do
       it('logs a deposit transaction') do
