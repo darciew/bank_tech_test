@@ -8,6 +8,26 @@ RSpec
 ## Task
 A Bank Account Simulator in Ruby that can be run on the command line. Using RSpec for testing, it is designed to show my skills in TDD and OO design.
 
+## User Stories
+
+```
+As a User
+So that I can keep track of my funds
+I can open a bank account
+
+As a User
+So that I can spend all my money
+I can withdraw funds from my account
+
+As a User
+So that I can save some money
+I can depsit funds into my account
+
+As a User
+So that I can keep track of my spending
+I can view my account statement
+```
+
 ## Instructions
 
 Close this repository:
