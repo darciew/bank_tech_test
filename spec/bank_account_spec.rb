@@ -4,6 +4,7 @@ require 'date'
 
 describe BankAccount do
   let(:bankaccount) { described_class.new }
+  let(:date) { Date.parse('15/11/2017') }
 
   context('A new bank account') do
     describe('#initialize') do
@@ -19,7 +20,6 @@ describe BankAccount do
 
   context('Depositing money') do
     describe('#deposit') do
-      let(:date) { Date.parse('15/11/2018') }
       let(:deposit_trans) { { date: date, credit: 0, debit: 150, balance: 150 } }
 
       it('adds an amount to the existing balance') do
@@ -41,7 +41,6 @@ describe BankAccount do
 
   context('Withdrawing money') do
     describe('#withdraw') do
-      let(:date) { Date.parse('15/11/2018') }
       let(:withdraw_trans) { { date: date, credit: 200, debit: 0, balance: 800 } }
 
       before(:each) do
@@ -62,6 +61,18 @@ describe BankAccount do
       it('adds withdraw values to the account statement') do
         bankaccount.withdraw(200)
         expect(bankaccount.statement.transactions).to include { withdraw_trans }
+      end
+    end
+  end
+
+  context('Viewing bank statement') do
+    describe('#view_statement') do
+      it('prints out a bank statement') do
+        allow(Date).to receive(:today).and_return(date)
+        bankaccount.deposit(1500)
+        bankaccount.withdraw(200)
+        print_view = 'date || credit || debit || balance' + "\n" '15/11/2017 || - || 1500 || 1500' + "\n" + '15/11/2017 || 200 || - || 1300' + "\n"
+        expect { bankaccount.view_statement }.to output(print_view).to_stdout
       end
     end
   end
