@@ -1,3 +1,4 @@
+# AccountStatement Class
 class AccountStatement
   attr_reader :transactions
 

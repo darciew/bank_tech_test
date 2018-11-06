@@ -1,5 +1,6 @@
 require 'date'
 
+# BankAccount Class
 class BankAccount
   attr_reader :balance, :statement
   START_BALANCE = 0
@@ -15,8 +16,8 @@ class BankAccount
     @balance += amount
     trans_details = {
       date: date.strftime('%d/%m/%Y'),
-      credit: '-',
-      debit: amount,
+      credit: amount,
+      debit: '-',
       balance: @balance
     }
     add_to_transactions(trans_details)
@@ -28,8 +29,8 @@ class BankAccount
     @balance -= amount
     trans_details = {
       date: date.strftime('%d/%m/%Y'),
-      credit: amount,
-      debit: '-',
+      credit: '-',
+      debit: amount,
       balance: @balance
     }
     add_to_transactions(trans_details)
