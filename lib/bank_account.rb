@@ -2,7 +2,7 @@ require 'date'
 
 # BankAccount Class
 class BankAccount
-  attr_reader :balance, :statement
+  attr_reader :balance
   START_BALANCE = 0
 
   def initialize(statement = AccountStatement.new)
