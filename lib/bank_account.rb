@@ -25,6 +25,10 @@ class BankAccount
     add_to_transactions(trans_details)
   end
 
+  def view_statement
+    @statement.format_statement
+  end
+
   private
 
   def add_to_transactions(details)
