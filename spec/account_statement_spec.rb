@@ -3,9 +3,9 @@ require 'date'
 
 describe AccountStatement do
   let(:accountstatement) { described_class.new }
-  let(:date) { Date.parse('15/11/2018') }
-  let(:deposit_trans) { { date: date, credit: 0, debit: 150, balance: 150 } }
-  let(:withdraw_trans) { { date: date, credit: 150, debit: 0, balance: 0 } }
+  let(:date) { Date.parse('15/11/2017') }
+  let(:deposit_trans) { { date: date, credit: "-", debit: 150, balance: 150 } }
+  let(:withdraw_trans) { { date: date, credit: 150, debit: '-', balance: 0 } }
 
   context('A new account statement') do
     describe('#initialize') do
@@ -25,6 +25,16 @@ describe AccountStatement do
       it('logs a withdraw transaction') do
         accountstatement.transaction_log(withdraw_trans)
         expect(accountstatement.transactions).to include { withdraw_trans }
+      end
+    end
+  end
+
+  context('Formatting transactions') do
+    describe('format_statement') do
+      it('formats a statement') do
+        accountstatement.transaction_log(deposit_trans)
+        format_view = 'date || credit || debit || balance' + "\n" '2017-11-15 || - || 150 || 150' + "\n"
+        expect { accountstatement.format_statement }.to output(format_view).to_stdout
       end
     end
   end
