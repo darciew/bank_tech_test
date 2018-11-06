@@ -31,8 +31,8 @@ describe 'Features' do
         account.withdraw(50)
 
         expect { account.view_statement }.to output('date || credit || '\
-           "debit || balance\n06/11/2018 || - || 50 || 100\n06/11/2018"\
-           " || 150 || - || 150\n").to_stdout
+          "debit || balance\n06/11/2018 || - || 50 || 100\n06/11/2018"\
+          " || 150 || - || 150\n").to_stdout
       end
     end
   end

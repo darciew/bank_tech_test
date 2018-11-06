@@ -15,7 +15,7 @@ class BankAccount
 
     @balance += amount
     trans_details = {
-      date: date.strftime('%d/%m/%Y'),
+      date: date,
       credit: amount,
       debit: '-',
       balance: @balance
@@ -28,7 +28,7 @@ class BankAccount
 
     @balance -= amount
     trans_details = {
-      date: date.strftime('%d/%m/%Y'),
+      date: date,
       credit: '-',
       debit: amount,
       balance: @balance
