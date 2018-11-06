@@ -71,8 +71,8 @@ describe BankAccount do
         bankaccount.deposit(1500)
         bankaccount.withdraw(200)
         expect { bankaccount.view_statement }.to output('date || credit || '\
-           "debit || balance\n15/11/2017 || 1500 || - || 1500\n15/11/2017"\
-           " || - || 200 || 1300\n").to_stdout
+           "debit || balance\n15/11/2017 || - || 200 || 1300\n15/11/2017"\
+           " || 1500 || - || 1500\n").to_stdout
       end
     end
   end
