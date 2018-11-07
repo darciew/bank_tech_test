@@ -1,7 +1,10 @@
 require 'bank_account'
 require 'account_statement'
+require 'date'
 
 describe 'Features' do
+  let(:date) { Date.parse('06/11/2018') }
+
   context('Transactions') do
     describe('Deposit') do
       it('can deposit money in User\'s account') do
@@ -26,6 +29,7 @@ describe 'Features' do
   context('Statement') do
     describe('View Statement') do
       it('can display the User\'s account statement') do
+        allow(Date).to receive(:today).and_return(date)
         account = BankAccount.new
         account.deposit(150)
         account.withdraw(50)
