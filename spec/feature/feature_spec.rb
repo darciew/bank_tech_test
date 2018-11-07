@@ -15,7 +15,7 @@ describe 'Features' do
         account.deposit(50)
 
         expect { account.view_statement }.to output('date || credit || '\
-          "debit || balance\n06/11/2018 || 50 ||  || 50\n").to_stdout
+          "debit || balance\n06/11/2018 || 50.00 ||  || 50.00\n").to_stdout
       end
     end
 
@@ -26,8 +26,8 @@ describe 'Features' do
         account.withdraw(50)
 
         expect { account.view_statement }.to output('date || credit || '\
-          "debit || balance\n06/11/2018 ||  || 50 || 100\n06/11/2018"\
-          " || 150 ||  || 150\n").to_stdout
+          "debit || balance\n06/11/2018 ||  || 50.00 || 100.00\n06/11/2018"\
+          " || 150.00 ||  || 150.00\n").to_stdout
       end
     end
   end
@@ -40,8 +40,8 @@ describe 'Features' do
         account.withdraw(50)
 
         expect { account.view_statement }.to output('date || credit || '\
-          "debit || balance\n06/11/2018 ||  || 50 || 100\n06/11/2018"\
-          " || 150 ||  || 150\n").to_stdout
+          "debit || balance\n06/11/2018 ||  || 50.00 || 100.00\n06/11/2018"\
+          " || 150.00 ||  || 150.00\n").to_stdout
       end
     end
   end

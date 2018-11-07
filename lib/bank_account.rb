@@ -10,24 +10,22 @@ class BankAccount
     @statement = statement
   end
 
-  def deposit(amount, date = Date.today)
+  def deposit(amount)
     raise "Amount must be more than #{START_BALANCE}" if amount.negative?
 
     @balance += amount
     trans_details = {
-      date: date,
       credit: amount,
       balance: @balance
     }
     add_to_transactions(trans_details)
   end
 
-  def withdraw(amount, date = Date.today)
+  def withdraw(amount)
     raise 'Error: insufficient funds' if amount > @balance
 
     @balance -= amount
     trans_details = {
-      date: date,
       debit: amount,
       balance: @balance
     }

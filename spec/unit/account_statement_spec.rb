@@ -4,8 +4,8 @@ require 'date'
 describe AccountStatement do
   let(:accountstatement) { described_class.new }
   let(:date) { Date.parse('15/11/2017') }
-  let(:deposit_trans) { { date: date, credit: 150, debit: '-', balance: 150 } }
-  let(:withdraw_trans) { { date: date, credit: '-', debit: 150, balance: 0 } }
+  let(:deposit_trans) { { date: date, credit: 150.00, balance: 150.00 } }
+  let(:withdraw_trans) { { date: date, debit: 150.00, balance: 0.00 } }
 
   context('Logging transactions') do
     describe('#transaction_log') do
@@ -29,7 +29,7 @@ describe AccountStatement do
         allow(Date).to receive(:today).and_return(date)
         accountstatement.transaction_log(deposit_trans)
         expect { accountstatement.format_statement }.to output('date || credit || '\
-          "debit || balance\n15/11/2017 || 150 || - || 150\n").to_stdout
+          "debit || balance\n15/11/2017 || 150.00 ||  || 150.00\n").to_stdout
       end
     end
   end
