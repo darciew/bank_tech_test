@@ -1,6 +1,5 @@
 # AccountStatement Class
 class AccountStatement
-  attr_reader :transactions
 
   def format_statement(transactions)
     puts 'date || credit || debit || balance'
