@@ -2,18 +2,13 @@
 class AccountStatement
   attr_reader :transactions
 
-  def initialize
-    @transactions = []
-  end
-
-  def transaction_log(details)
-    @transactions << details
-  end
-
-  def format_statement
+  def format_statement(transactions)
     puts 'date || credit || debit || balance'
-    @transactions.each.reverse_each do |transaction|
-      puts "#{format_date} || #{format_amount(transaction[:credit])} || #{format_amount(transaction[:debit])} || #{format_amount(transaction[:balance])}"
+    transactions.each.reverse_each do |transaction|
+      credit = format_amount(transaction[:credit])
+      debit = format_amount(transaction[:debit])
+      balance = format_amount(transaction[:balance])
+      puts "#{format_date} || #{credit} || #{debit} || #{balance}"
     end
   end
 
