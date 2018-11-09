@@ -1,12 +1,29 @@
 # Bank Tech Test
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/b7260acc0ae123d2e76b/maintainability)](https://codeclimate.com/github/darciew/bank_tech_test/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/b7260acc0ae123d2e76b/test_coverage)](https://codeclimate.com/github/darciew/bank_tech_test/test_coverage) [![Build Status](https://travis-ci.org/darciew/bank_tech_test.svg?branch=master)](https://travis-ci.org/darciew/bank_tech_test)
+
 ## Technologies
 Ruby
 
 RSpec
 
 ## Task
-A Bank Account Simulator in Ruby that can be run on the command line. Using RSpec for testing, it is designed to show my skills in TDD and OO design.
+Build a Bank Account Simulator in Ruby that can be run on the command line.
+
+### Requirements
+
+* You should be able to interact with your code via a REPL like IRB or the JavaScript console.  (You don't need to implement a command line interface that takes input from STDIN.)
+* Deposits, withdrawal.
+* Account statement (date, amount, balance) printing.
+* Data can be kept in memory (it doesn't need to be stored to a database or anything).
+
+### Acceptance criteria
+
+**Given** a client makes a deposit of 1000 on 10-01-2012  
+**And** a deposit of 2000 on 13-01-2012  
+**And** a withdrawal of 500 on 14-01-2012  
+**When** she prints her bank statement  
+**Then** she would see
 
 ## User Stories
 
@@ -45,62 +62,31 @@ Run RSpec to view tests:
 ```
 $ bundle exec rspec
 ```
+Run Rubocop to view code quality
+```
+$ bundle exec rubocop
+```
 
-Command Line example:
+## How to use in the Command Line:
 
-New account:
 ```
 2.5.1 :001 > require './lib/account_statement.rb'
  => true
 2.5.1 :002 > require './lib/bank_account.rb'
  => true
-2.5.1 :003 > account = BankAccount.new
- => #<BankAccount:0x00007f93521c7a40 @balance=0,
-  @statement=#<AccountStatement:0x00007f93521c7a18
-  @transactions=[]>>
-```
-Deposit:
-```
-2.5.1 :004 > account.deposit(-15)
-Traceback (most recent call last):
-3: from /Users/darciewalsh/.rvm/rubies/ruby-2.5.1/bin/irb:11:in `<main>'
-2: from (irb):4
-1: from /Users/darciewalsh/Projects/bank_tech_test/lib/bank_account.rb:13:in
- `deposit'
-RuntimeError (Amount must be more than 0)
-2.5.1 :005 > account.deposit(0)
- => [{:date=>"06/11/2018", :credit=>"-", :debit=>0, :balance=>0}]
-2.5.1 :006 > account.deposit(20)
- => [{:date=>"06/11/2018", :credit=>"-", :debit=>0, :balance=>0},
-  {:date=>"06/11/2018", :credit=>"-", :debit=>20, :balance=>20}]
-2.5.1 :007 > account.deposit(40)
- => [{:date=>"06/11/2018", :credit=>"-", :debit=>0, :balance=>0},
-  {:date=>"06/11/2018", :credit=>"-", :debit=>20, :balance=>20},
-  {:date=>"06/11/2018", :credit=>"-", :debit=>40, :balance=>60}]
-2.5.1 :008 > account.deposit(1000)
- => [{:date=>"06/11/2018", :credit=>"-", :debit=>0, :balance=>0},
-  {:date=>"06/11/2018", :credit=>"-", :debit=>20, :balance=>20},
-  {:date=>"06/11/2018", :credit=>"-", :debit=>40, :balance=>60},
-  {:date=>"06/11/2018", :credit=>"-", :debit=>1000, :balance=>1060}]
-```
-Withdraw:
-```
-2.5.1 :011 > account.withdraw(60)
- => [{:date=>"06/11/2018", :credit=>"-", :debit=>0, :balance=>0},
-  {:date=>"06/11/2018", :credit=>"-", :debit=>20, :balance=>20},
-  {:date=>"06/11/2018", :credit=>"-", :debit=>40, :balance=>60},
-  {:date=>"06/11/2018", :credit=>"-", :debit=>1000,
-   :balance=>1060}, {:date=>"06/11/2018", :credit=>60, :debit=>"-",
-   :balance=>1000}]
-
-```
-Statement:
-```
-2.5.1 :012 > account.view_statement
+2.5.1 :003 > statement = AccountStatement.new
+ => #<AccountStatement:0x00007fbbf10ac850>
+2.5.1 :004 > account = BankAccount.new(statement)
+ => #<BankAccount:0x00007fbbf109e340 @balance=0, @statement=#<AccountStatement:0x00007fbbf10ac850>, @transactions=[]>
+2.5.1 :005 > account.deposit(1000)
+ => [{:credit=>1000, :balance=>1000}]
+2.5.1 :006 > account.deposit(2000)
+ => [{:credit=>1000, :balance=>1000}, {:credit=>2000, :balance=>3000}]
+2.5.1 :007 > account.withdraw(500)
+ => [{:credit=>1000, :balance=>1000}, {:credit=>2000, :balance=>3000}, {:debit=>500, :balance=>2500}]
+2.5.1 :008 > account.view_statement
 date || credit || debit || balance
-06/11/2018 || - || 0 || 0
-06/11/2018 || - || 20 || 20
-06/11/2018 || - || 40 || 60
-06/11/2018 || - || 1000 || 1060
-06/11/2018 || 60 || - || 1000
-```
+09/11/2018 ||  || 500.00 || 2500.00
+09/11/2018 || 2000.00 ||  || 3000.00
+09/11/2018 || 1000.00 ||  || 1000.00
+ ```
