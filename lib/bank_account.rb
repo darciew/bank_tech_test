@@ -8,6 +8,7 @@ class BankAccount
   def initialize(statement = AccountStatement.new)
     @balance = START_BALANCE
     @statement = statement
+    @transactions = []
   end
 
   def deposit(amount)
@@ -33,12 +34,12 @@ class BankAccount
   end
 
   def view_statement
-    @statement.format_statement
+    @statement.format_statement(@transactions)
   end
 
   private
 
   def add_to_transactions(details)
-    @statement.transaction_log(details)
+    @transactions.push(details)
   end
 end
