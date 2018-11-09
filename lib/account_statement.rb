@@ -5,7 +5,10 @@ class AccountStatement
   def format_statement(transactions)
     puts 'date || credit || debit || balance'
     transactions.each.reverse_each do |transaction|
-      puts "#{format_date} || #{format_amount(transaction[:credit])} || #{format_amount(transaction[:debit])} || #{format_amount(transaction[:balance])}"
+      credit = format_amount(transaction[:credit])
+      debit = format_amount(transaction[:debit])
+      balance = format_amount(transaction[:balance])
+      puts "#{format_date} || #{credit} || #{debit} || #{balance}"
     end
   end
 
