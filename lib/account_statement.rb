@@ -1,6 +1,5 @@
 # AccountStatement Class
 class AccountStatement
-
   def format_statement(transactions)
     puts 'date || credit || debit || balance'
     transactions.each.reverse_each do |transaction|
